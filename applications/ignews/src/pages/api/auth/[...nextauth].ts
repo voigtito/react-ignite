@@ -13,7 +13,7 @@ export default NextAuth({
     }),
   ],
   jwt: {
-    signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
+    signingKey: `{"kty":"oct","kid":"C5CYDX93EI24pw5HHp7pjMp6QZ1A17t71yfl3lZ5sMU","alg":"HS512","k":"ALkn-HTReJH0K_XgkZc4lPAyASexG56fly37vt7vkwYZ6HeNRWwyLlCux9cbgYhdF6y8XaTr1zDOzQG0jDLfCw"}`
   },
   callbacks: {
     async signIn(user, account, profile) {
