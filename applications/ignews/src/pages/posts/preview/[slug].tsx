@@ -9,12 +9,14 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 interface PostPreviewProps {
+
     post: {
         slug: string;
         title: string;
         content: string;
         updatedAt: string;
     }
+    
 }
 
 export default function PostPreview({ post }: PostPreviewProps) {
