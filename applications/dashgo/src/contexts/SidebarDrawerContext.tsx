@@ -1,4 +1,4 @@
-import { useDisclosure, UseDisclosureReturn } from "@chakra-ui/hooks";
+import { useDisclosure, UseDisclosureReturn } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import { createContext, ReactNode, useContext, useEffect } from "react";
 

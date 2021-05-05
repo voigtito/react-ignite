@@ -1,29 +1,29 @@
-import { Box, Drawer , useBreakpointValue, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody} from "@chakra-ui/react";
+import { Box, Drawer, useBreakpointValue, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody } from "@chakra-ui/react";
 import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
 import { SidebarNav } from "./SidebarNav";
 
 export function Sidebar() {
-    const {isOpen, onClose} = useSidebarDrawer();
+    const { isOpen, onClose } = useSidebarDrawer();
 
-    const isFloatingSideBar = useBreakpointValue({
+    const isDrawerSideBar = useBreakpointValue({
         base: true,
-        lg: false
+        lg: false,
     })
 
-    if (isFloatingSideBar) {
+    if (isDrawerSideBar) {
         return (
-        <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
-            <DrawerOverlay>
-                <DrawerContent bg="gray.800" p="4">
-                    <DrawerCloseButton mt="6">
+            <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+                <DrawerOverlay>
+                    <DrawerContent bg="gray.800" p="4">
+                        <DrawerCloseButton mt="6" />
                         <DrawerHeader>Navegação</DrawerHeader>
                         <DrawerBody>
                             <SidebarNav />
                         </DrawerBody>
-                    </DrawerCloseButton>
-                </DrawerContent>
-            </DrawerOverlay>
-        </Drawer>)
+                    </DrawerContent>
+                </DrawerOverlay>
+            </Drawer>
+        )
     }
 
     return (
