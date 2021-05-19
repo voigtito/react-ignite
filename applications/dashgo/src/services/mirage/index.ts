@@ -1,4 +1,4 @@
-import { createServer, Factory, Model, Response } from 'miragejs';
+import { createServer, Factory, Model, Response, ActiveModelSerializer } from 'miragejs';
 import faker from 'faker';
 
 type User = {
@@ -9,6 +9,11 @@ type User = {
 
 export function makeServer() {
     const server = createServer({
+
+        serializers: {
+            application: ActiveModelSerializer
+        },
+
         models: {
             // Partial is to make to fields from User optional
             user: Model.extend<Partial<User>>({})
@@ -57,6 +62,7 @@ export function makeServer() {
                 )
             });
             this.post('/users');
+            this.post('/users/:id');
 
             // After define the routes it will set to empty because of Nextjs apis.
             this.namespace = '';
