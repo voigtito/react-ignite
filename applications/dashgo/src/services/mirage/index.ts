@@ -1,4 +1,4 @@
-import { createServer, Factory, Model } from 'miragejs';
+import { createServer, Factory, Model, Response } from 'miragejs';
 import faker from 'faker';
 
 type User = {
@@ -29,7 +29,7 @@ export function makeServer() {
         },
 
         seeds(server) {
-            server.createList('user', 10);
+            server.createList('user', 200);
         },
 
         // Shorthands
@@ -39,7 +39,23 @@ export function makeServer() {
             // Important to test the loadings in the application.
             this.timing = 750;
 
-            this.get('/users');
+            this.get('/users', function (schema, request) {
+
+                const { page = 1, per_page = 10 } = request.queryParams;
+                const total = schema.all('user').length;
+                // offset
+                const pageStart = (Number(page) - 1) * Number(per_page);
+                // limit
+                const pageEnd = pageStart + Number(per_page);
+
+                const users = this.serialize(schema.all('user')).users.slice(pageStart, pageEnd);
+
+                return new Response(
+                    200, 
+                    {'x-total-count': String(total)}, 
+                    {users}
+                )
+            });
             this.post('/users');
 
             // After define the routes it will set to empty because of Nextjs apis.

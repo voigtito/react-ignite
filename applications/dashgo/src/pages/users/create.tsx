@@ -13,14 +13,14 @@ interface CreateUserFormData {
     email: string;
     password: string;
     password_confirmation: string;
-  }
-  
-  const createUserFromSchema = yup.object().shape({
+}
+
+const createUserFromSchema = yup.object().shape({
     name: yup.string().required("E-mail obrigatório"),
     email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
     password: yup.string().required("Senha obrigatória").min(6, 'Senha precisa no mínimo 6 caracteres'),
     password_confirmation: yup.string().oneOf([null, yup.ref('password')], 'As senhas precisam ser iguais')
-  })
+})
 
 export default function UserCreate() {
 
@@ -47,8 +47,8 @@ export default function UserCreate() {
                             <Input error={formState.errors.email} name="email" label="E-mail" {...register('email')} />
                         </SimpleGrid>
                         <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
-                            <Input error={formState.errors.password} name="password" label="Senha" {...register('password')}/>
-                            <Input error={formState.errors.password_confirmation} name="password_confirmation" type="password" label="Confirmação da senha" {...register('password_confirmation')}/>
+                            <Input error={formState.errors.password} name="password" label="Senha" {...register('password')} />
+                            <Input error={formState.errors.password_confirmation} name="password_confirmation" type="password" label="Confirmação da senha" {...register('password_confirmation')} />
                         </SimpleGrid>
                     </VStack>
                     <Flex mt="8" justify="flex-end">
