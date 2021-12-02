@@ -20,7 +20,7 @@ export default function UserList() {
     lg: true
   })
 
-  async function handlePrefetchUser(userId:string) {
+  async function handlePrefetchUser(userId: string) {
     await queryClient.prefetchQuery(['user', userId], async () => {
       const response = await api.get(`users/${userId}`);
       return response.data;
@@ -38,7 +38,7 @@ export default function UserList() {
           <Flex mb="8" justify="space-between" align="center">
             <Heading size="lg" fontWeight="normal">
               Usuários
-                            {
+              {
                 !isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4" />
               }
               {
@@ -49,7 +49,7 @@ export default function UserList() {
               <NextLink href="/users/create" passHref>
                 <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiAddLine} fontSize="20" />}>
                   Criar novo
-                                </Button>
+                </Button>
               </NextLink>
             </Flex>
           </Flex>
@@ -101,7 +101,7 @@ export default function UserList() {
                       ))}
                     </Tbody>
                   </Table>
-                  <Pagination totalCountOfRegisters={data.totalCount} currentPage={page} onPageChange={setPage}/>
+                  <Pagination totalCountOfRegisters={data.totalCount} currentPage={page} onPageChange={setPage} />
                 </>
               )
           }
